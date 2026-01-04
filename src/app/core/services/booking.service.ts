@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AvailableHotel } from '../models/available-hotel.model';
 import { SearchHotelsRequest } from '../models/search-hotels-request.model';
+import { AvailableRoomsByCategory } from '../models/available-rooms-by-category.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,4 +22,16 @@ export class BookingService {
       request
     );
   }
+
+  getAvailableRooms(hotelId: number,checkIn: string,checkOut: string,guests?: number): Observable<AvailableRoomsByCategory[]> {
+  const params: any = {hotelId,checkIn,checkOut,};
+  if (guests !== undefined){
+    params.guests = guests;
+  }
+  return this.http.get<any[]>(
+    `${this.BASE_URL}/available-rooms`,
+    { params }
+  );
+}
+
 }

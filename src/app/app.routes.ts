@@ -13,5 +13,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/hotels/hotels-list/hotels-list')
         .then(m => m.HotelsListComponent)
-  }
+  },
+  {
+      path: 'hotels/:hotelId/rooms',
+      loadComponent: () =>
+        import('./features/hotels/room-list/room-list')
+          .then(m => m.RoomListComponent)
+    }
 ];

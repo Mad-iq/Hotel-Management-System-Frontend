@@ -1,0 +1,60 @@
+<div class="room-list-container">
+  <div class="header">
+    <h1>Available Rooms</h1>
+    <div class="booking-details">
+      <span><strong>Check-in:</strong> {{ checkIn }}</span>
+      <span><strong>Check-out:</strong> {{ checkOut }}</span>
+      <span *ngIf="guests"><strong>Guests:</strong> {{ guests }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading available rooms...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-message">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!loading && !error && availableRooms.length === 0" class="no-rooms">
+    <p>No rooms available for the selected dates.</p>
+  </div>
+
+  <div *ngIf="!loading && !error && availableRooms.length > 0" class="room-categories">
+    <div *ngFor="let category of availableRooms" class="room-category-card">
+      <div class="category-header">
+        <h2>{{ category.categoryName }}</h2>
+        <div class="price">
+          <span class="amount">{{ category.pricePerNight }}</span>
+          <span class="currency">{{ category.currency }}</span>
+          <span class="per-night">per night</span>
+        </div>
+      </div>
+
+      <div class="category-details">
+        <p class="description">{{ category.description }}</p>
+        <div class="capacity">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Capacity: {{ category.capacity }} {{ category.capacity === 1 ? 'guest' : 'guests' }}</span>
+        </div>
+      </div>
+
+      <div class="availability">
+        <span class="availability-count">
+          {{ category.availableRooms.length }} 
+          {{ category.availableRooms.length === 1 ? 'room' : 'rooms' }} available
+        </span>
+        <button class="book-button">Book Now</button>
+      </div>
+    </div>
+  </div>
+</div>

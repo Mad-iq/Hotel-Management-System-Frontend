@@ -56,7 +56,7 @@
             <span class="price">Rs {{ hotel.startingFromPrice }}</span>
             <span class="price-note">per night</span>
           </div>
-          <button class="book-btn">
+          <button class="book-btn" (click)="goToRooms(hotel.hotelId)">
             Book Now
           </button>
         </div>
