@@ -9,6 +9,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class Home {
   cities = signal([
     'Mumbai',
     'Delhi',
-    'Bangalore',
+    'Bengaluru',
     'Kolkata',
     'Chennai',
     'Hyderabad',
@@ -60,7 +61,7 @@ export class Home {
     },
   ]);
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private router: Router) {
     this.searchForm = this.fb.group({
       location: ['',Validators.required],
       checkIn: ['', Validators.required],
@@ -83,13 +84,30 @@ export class Home {
   }
 
   onSearch() {
-    if (this.searchForm.valid) {
-      console.log('Search Data:', this.searchForm.value);
-      //navig goes here
-    }
+    if (this.searchForm.invalid) {
+    return;
+  }
+  const { location, checkIn, checkOut, guests } = this.searchForm.value;
+  this.router.navigate(['/hotels'], {
+    queryParams: {
+      city: location,
+      checkIn: this.formatDate(checkIn),
+      checkOut: this.formatDate(checkOut),
+      guests,
+    },
+  });
   }
 
   get today(): Date {
     return new Date();
   }
+
+  private formatDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+
 }

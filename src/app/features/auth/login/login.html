@@ -29,12 +29,7 @@
         [disabled]="loading || loginForm.invalid">
         Login
       </button>
-
        <p class="register-link">Don’t have an account?<a routerLink="/register">Create account</a></p>
-      <p class="error-text" *ngIf="error">
-        {{ error }}
-      </p>
-
     </form>
 
   </mat-card>

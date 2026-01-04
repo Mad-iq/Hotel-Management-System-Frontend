@@ -1,4 +1,3 @@
-/* Page background */
 .login-page {
   min-height: 100vh;
   display: flex;
@@ -7,7 +6,6 @@
   background: linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
 }
 
-/* Card */
 .login-card {
   width: 100%;
   max-width: 420px;
@@ -16,39 +14,33 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* Header block */
 .login-header {
   text-align: center;
   margin-bottom: 32px;
 }
 
-/* Title */
 .login-title {
   font-size: 26px;
   font-weight: 600;
   margin: 0;
 }
 
-/* Subtitle */
 .login-subtitle {
   font-size: 18px;
   color: #6b7280;
   margin-top: 12px;
 }
 
-/* Form layout */
 .login-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Inputs */
 .full-width {
   width: 100%;
 }
 
-/* Button */
 .login-button {
   height: 46px;
   border-radius: 24px;
@@ -56,13 +48,11 @@
   margin-top: 8px;
 }
 
-/* Disabled state still visible */
 .login-button:disabled {
   background-color: #cfd8dc;
   color: #607d8b;
 }
 
-/* Error */
 .error-text {
   text-align: center;
   color: #d32f2f;

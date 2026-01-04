@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { AuthService } from '../../../core/auth/auth.service';
 import { MatCardModule } from '@angular/material/card';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
@@ -34,7 +34,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,private snackBar: MatSnackBar
+    private authService: AuthService,private snackBar: MatSnackBar, private router: Router
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -54,7 +54,7 @@ export class LoginComponent {
       next: () => {
         this.loading = false;
         console.log('Login successful');
-        // routing will be added next step
+         this.router.navigate(['/']);
       },
       error: (err) => {
         this.loading = false;

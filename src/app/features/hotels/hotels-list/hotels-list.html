@@ -1,0 +1,73 @@
+<div class="hotels-container">
+  <div class="search-summary">
+    <h1>Available Hotels in {{ searchRequest?.city }}</h1>
+    <p class="search-info">
+      <span>{{ searchRequest?.checkIn }} - {{ searchRequest?.checkOut }}</span>
+      <span *ngIf="searchRequest?.guests" class="guests-info">
+        • {{ searchRequest?.guests }} {{ searchRequest?.guests === 1 ? 'Guest' : 'Guests' }}
+      </span>
+    </p>
+  </div>
+
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Searching for available hotels...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h3>{{ error }}</h3>
+    <p>Please try again or modify your search criteria.</p>
+  </div>
+
+  <div *ngIf="!error" class="hotels-grid">
+    <div *ngFor="let hotel of hotels" class="hotel-card">
+      <div class="hotel-image">
+         <img 
+           [src]="'assets/images/def_hotel.avif'" 
+           [alt]="hotel.name"
+           loading="lazy"
+           />
+        <div class="hotel-rating">
+          <span class="stars">
+            <span *ngFor="let star of [].constructor(hotel.starRating)" class="star">★</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="hotel-content">
+        <div class="hotel-header">
+          <h2 class="hotel-name">{{ hotel.name }}</h2>
+          <p class="hotel-city">📍 {{ hotel.city }}</p>
+        </div>
+
+        <div class="hotel-details">
+          <div class="availability">
+            <span class="label">Available Rooms:</span>
+            <span class="value" [class.low-availability]="hotel.availableRooms <= 3">
+              {{ hotel.availableRooms }}
+            </span>
+          </div>
+        </div>
+
+        <div class="hotel-footer">
+          <div class="price-section">
+            <span class="price-label">Starting from</span>
+            <span class="price">Rs {{ hotel.startingFromPrice }}</span>
+            <span class="price-note">per night</span>
+          </div>
+          <button class="book-btn">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && hotels.length === 0" class="no-results">
+    <div class="no-results-icon">🏨</div>
+    <h3>No hotels found</h3>
+    <p>We couldn't find any available hotels matching your criteria.</p>
+    <p>Try adjusting your search dates or location.</p>
+  </div>
+</div>
