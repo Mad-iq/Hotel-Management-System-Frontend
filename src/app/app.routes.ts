@@ -63,13 +63,13 @@ export const routes: Routes = [
       .then(m => m.AdminCategoriesComponent)
 },
 {
-  path: 'admin/categories/:categoryId/base-pricing',
+  path: 'admin/pricing/base',
   loadComponent: () =>
     import('./features/admin/pricing/base-pricing/base-pricing')
       .then(m => m.BasePricingComponent)
 },
 {
-  path: 'admin/categories/:categoryId/seasonal-pricing',
+  path: 'admin/pricing/seasonal',
   loadComponent: () =>
     import('./features/admin/pricing/seasonal-pricing/seasonal-pricing')
       .then(m => m.SeasonalPricingComponent)
