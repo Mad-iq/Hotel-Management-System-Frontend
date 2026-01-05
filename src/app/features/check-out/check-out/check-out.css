@@ -1,0 +1,134 @@
+.checkout-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.page-subtitle {
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+.search-section {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.booking-input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.booking-input:focus {
+  outline: none;
+  border-color: #9333ea;
+}
+
+.btn {
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #7c3aed;
+  color: white;
+}
+
+.btn-primary:disabled {
+  background-color: #c4b5fd;
+  cursor: not-allowed;
+}
+
+.btn-success {
+  background-color: #0f766e;
+  color: white;
+  margin-top: 20px;
+}
+
+.btn-success:disabled {
+  background-color: #99f6e4;
+  cursor: not-allowed;
+}
+
+.loading {
+  color: #7c3aed;
+  margin-bottom: 12px;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.success-message {
+  background: #ecfeff;
+  color: #065f46;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.booking-card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin-top: 16px;
+}
+
+.booking-card h3 {
+  margin-bottom: 18px;
+  font-size: 18px;
+}
+
+.booking-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.booking-row:last-child {
+  border-bottom: none;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.checked-in {
+  background: #ccfbf1;
+  color: #115e59;
+}
+
+.status.checked-out {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #6b7280;
+}

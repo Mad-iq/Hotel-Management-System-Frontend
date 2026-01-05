@@ -110,6 +110,18 @@ export const routes: Routes = [
     import('./features/check-in/check-in/check-in')
       .then(m => m.CheckInComponent),
 },
+{
+    path: 'manager/check-out',
+    loadComponent: () =>
+      import('./features/check-out/check-out/check-out')
+        .then(m => m.CheckOutComponent),
+  },
+  {
+  path: 'receptionist/check-out',
+  loadComponent: () =>
+    import('./features/check-out/check-out/check-out')
+      .then(m => m.CheckOutComponent),
+},
   
 
 

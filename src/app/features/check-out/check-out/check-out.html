@@ -1,1 +1,90 @@
-<p>check-out works!</p>
+<div class="checkout-container">
+
+  <h2 class="page-title">Guest Check-Out</h2>
+  <p class="page-subtitle">
+    Enter the booking ID provided by the guest to complete check-out
+  </p>
+
+  <div class="search-section">
+    <input
+      type="number"
+      placeholder="Enter Booking ID"
+      [(ngModel)]="bookingIdInput"
+      [disabled]="loading"
+      class="booking-input"
+    />
+
+    <button
+      class="btn btn-primary"
+      (click)="fetchBooking()"
+      [disabled]="loading"
+    >
+      Fetch Booking
+    </button>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    Loading...
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div class="success-message" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+
+  <div class="booking-card" *ngIf="booking">
+    <h3>Booking Details</h3>
+
+    <div class="booking-row">
+      <span>Booking ID</span>
+      <strong>{{ booking.id }}</strong>
+    </div>
+
+    <div class="booking-row">
+      <span>Hotel ID</span>
+      <strong>{{ booking.hotelId }}</strong>
+    </div>
+
+    <div class="booking-row">
+      <span>Room ID</span>
+      <strong>{{ booking.roomId }}</strong>
+    </div>
+
+    <div class="booking-row">
+      <span>Check-in Date</span>
+      <strong>{{ booking.checkInDate }}</strong>
+    </div>
+
+    <div class="booking-row">
+      <span>Check-out Date</span>
+      <strong>{{ booking.checkOutDate }}</strong>
+    </div>
+
+    <div class="booking-row">
+      <span>Status</span>
+      <strong
+        class="status"
+        [class.checked-in]="booking.bookingStatus === 'CHECKED_IN'"
+        [class.checked-out]="booking.bookingStatus === 'CHECKED_OUT'"
+      >
+        {{ booking.bookingStatus }}
+      </strong>
+    </div>
+
+    <button
+      class="btn btn-success"
+      (click)="checkOut()"
+      [disabled]="!canCheckOut() || loading"
+    >
+      Check-Out Guest
+    </button>
+
+    <p class="hint" *ngIf="!canCheckOut() && booking.bookingStatus">
+      Only checked-in guests can be checked out.
+    </p>
+  </div>
+
+</div>
