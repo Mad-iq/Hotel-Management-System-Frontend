@@ -85,7 +85,20 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/admin/hotels/admin-room/admin-room')
       .then(m => m.AdminRoomComponent),
+},
+{
+  path: 'admin/reports',
+  loadComponent: () =>
+    import('./features/admin/reports/admin-reports/admin-reports')
+      .then(m => m.AdminReportsComponent),
+},
+{
+  path: 'dashboard/manager',
+  loadComponent: () =>
+    import('./features/dashboard/manager/manager-dashboard/manager-dashboard')
+      .then(m => m.ManagerDashboardComponent)
 }
+
 
 
 ];

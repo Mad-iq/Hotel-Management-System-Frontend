@@ -1,0 +1,84 @@
+<div class="reports-container">
+  <div class="header">
+    <h1>Admin Reports Dashboard</h1>
+    <p class="subtitle">Overview of your business metrics</p>
+  </div>
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading reports...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-container">
+    <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <p>{{ error }}</p>
+    <button class="retry-btn" (click)="loadReports()">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="reports-grid">
+    <div class="report-card revenue-card">
+      <div class="card-header">
+        <div class="icon-wrapper revenue-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <h2>Revenue Report</h2>
+      </div>
+      
+      <div class="card-content" *ngIf="revenueReport">
+        <div class="metric">
+          <span class="label">Total Revenue</span>
+          <span class="value">{{ revenueReport.totalRevenue | number:'1.2-2' }} <span class="currency">{{ revenueReport.currency }}</span></span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="timestamp">Last updated: {{ getCurrentTime() }}</span>
+      </div>
+    </div>
+    <div class="report-card booking-card">
+      <div class="card-header">
+        <div class="icon-wrapper booking-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <h2>Booking Summary</h2>
+      </div>
+      
+      <div class="card-content" *ngIf="bookingSummary">
+        <div class="metric">
+          <span class="label">Total Bookings</span>
+          <span class="value">{{ bookingSummary.totalBookings | number }}</span>
+        </div>
+        
+        <div class="metrics-row">
+          <div class="metric-small confirmed">
+            <span class="label">Confirmed</span>
+            <span class="value">{{ bookingSummary.confirmedBookings | number }}</span>
+            <span class="percentage">{{ getPercentage(bookingSummary.confirmedBookings, bookingSummary.totalBookings) }}%</span>
+          </div>
+          
+          <div class="metric-small cancelled">
+            <span class="label">Cancelled</span>
+            <span class="value">{{ bookingSummary.cancelledBookings | number }}</span>
+            <span class="percentage">{{ getPercentage(bookingSummary.cancelledBookings, bookingSummary.totalBookings) }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="timestamp">Last updated: {{ getCurrentTime() }}</span>
+      </div>
+    </div>
+
+  </div>
+</div>
