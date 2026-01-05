@@ -18,7 +18,7 @@
 
 .header-content {
   text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #c23b73;
   padding: 3rem 2rem;
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(102, 126, 234, 0.25);
@@ -57,7 +57,6 @@
   font-weight: 400;
 }
 
-/* Section Styles */
 .dashboard-section {
   margin-bottom: 3.5rem;
   animation: fadeInUp 0.6s ease-out;
@@ -102,17 +101,17 @@
 }
 
 .hotel-icon {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #c33ca3;
   box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
 }
 
 .pricing-icon {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: #2fab6f;
   box-shadow: 0 4px 14px rgba(245, 87, 108, 0.3);
 }
 
 .report-icon {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background:  #4facfe;
   box-shadow: 0 4px 14px rgba(79, 172, 254, 0.3);
 }
 
@@ -155,7 +154,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #764ba2;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
@@ -191,7 +190,7 @@
 }
 
 .dashboard-card:hover .card-icon {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #4d65ec;
   transform: rotate(5deg) scale(1.05);
 }
 
@@ -218,7 +217,7 @@
 .card-button {
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #d25d96;
   color: white;
   border: none;
   border-radius: 10px;
@@ -257,7 +256,7 @@
 }
 
 .card-button:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #63408a 100%);
+  background: #4d65ec;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }

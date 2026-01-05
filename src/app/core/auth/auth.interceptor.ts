@@ -13,10 +13,6 @@ export const authInterceptor: HttpInterceptorFn =(
   next: HttpHandlerFn
 ): Observable<HttpEvent<any>> =>{
 
-  // if (req.url.includes('/api/auth')){
-  //   return next(req);
-  // }
-
   if (
     req.url.includes('/api/auth/login') ||
     req.url.includes('/api/auth/register')
