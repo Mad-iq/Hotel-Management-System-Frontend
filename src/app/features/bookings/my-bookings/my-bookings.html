@@ -47,14 +47,14 @@
           <span class="label">Booking #{{ booking.id }}</span>
         </div>
         <div class="status-badge" [ngClass]="{
-          'status-pending': booking.bookingStatus === 'PENDING',
-          'status-confirmed': booking.bookingStatus === 'CONFIRMED',
-          'status-cancelled': booking.bookingStatus === 'CANCELLED',
-          'status-completed': booking.bookingStatus === 'COMPLETED',
-          'status-no-show': booking.bookingStatus === 'NO_SHOW'
-        }">
-          {{ booking.bookingStatus }}
-        </div>
+            'status-confirmed': booking.bookingStatus === 'CONFIRMED',
+            'status-cancelled': booking.bookingStatus === 'CANCELLED',
+            'status-checked-in': booking.bookingStatus === 'CHECKED_IN',
+            'status-checked-out': booking.bookingStatus === 'CHECKED_OUT',
+           'status-no-show': booking.bookingStatus === 'NO_SHOW'
+          }">
+  {{ booking.bookingStatus }}
+</div>
       </div>
 
       <div class="booking-content">
@@ -136,7 +136,7 @@
           <button 
             class="btn btn-danger" 
             (click)="openCancelDialog(booking)"
-            [disabled]="booking.bookingStatus === 'CANCELLED' || booking.bookingStatus === 'COMPLETED' || booking.bookingStatus === 'NO_SHOW'">
+            [disabled]="booking.bookingStatus !== 'CONFIRMED'">
             Cancel Booking
           </button>
         </div>
