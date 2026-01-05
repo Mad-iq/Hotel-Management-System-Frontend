@@ -61,8 +61,18 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/admin/hotels/admin-categories/admin-categories')
       .then(m => m.AdminCategoriesComponent)
+},
+{
+  path: 'admin/categories/:categoryId/base-pricing',
+  loadComponent: () =>
+    import('./features/admin/pricing/base-pricing/base-pricing')
+      .then(m => m.BasePricingComponent)
+},
+{
+  path: 'admin/categories/:categoryId/seasonal-pricing',
+  loadComponent: () =>
+    import('./features/admin/pricing/seasonal-pricing/seasonal-pricing')
+      .then(m => m.SeasonalPricingComponent)
 }
-
-
 
 ];

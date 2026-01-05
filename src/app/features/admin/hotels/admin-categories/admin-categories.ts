@@ -57,8 +57,6 @@ export class AdminCategoriesComponent implements OnInit {
     });
   }
 
-  /* -------------------- FORM -------------------- */
-
   private initForm(): void {
     this.categoryForm = this.fb.group({
       name: ['', Validators.required],
@@ -66,8 +64,6 @@ export class AdminCategoriesComponent implements OnInit {
       description: ['', Validators.required],
     });
   }
-
-  /* -------------------- HOTELS -------------------- */
 
   private loadHotels(): void {
     this.hotelService.getHotels().subscribe({
@@ -92,7 +88,6 @@ export class AdminCategoriesComponent implements OnInit {
   }
 }
 
-  /* -------------------- CATEGORIES -------------------- */
 
   private loadCategories(hotelId: number): void {
     this.loading = true;

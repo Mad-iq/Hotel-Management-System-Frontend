@@ -5,7 +5,6 @@
   color: #1f2937;
 }
 
-/* Header */
 .page-header {
   margin-bottom: 24px;
 }
@@ -22,7 +21,6 @@
   margin-top: 6px;
 }
 
-/* Hotel selector */
 .hotel-selector {
   margin-bottom: 24px;
 }
@@ -41,7 +39,6 @@
   font-size: 14px;
 }
 
-/* Form */
 .category-form {
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
@@ -55,7 +52,6 @@
   margin-bottom: 16px;
 }
 
-/* Form grid */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -75,7 +71,6 @@
   border-color: #2563eb;
 }
 
-/* Submit button */
 .category-form button {
   padding: 10px 16px;
   border-radius: 6px;
@@ -96,7 +91,6 @@
   background-color: #1d4ed8;
 }
 
-/* Loading & error */
 .loading {
   font-size: 14px;
   color: #6b7280;
@@ -108,7 +102,6 @@
   font-size: 14px;
 }
 
-/* Table */
 .categories-table {
   width: 100%;
   border-collapse: collapse;
