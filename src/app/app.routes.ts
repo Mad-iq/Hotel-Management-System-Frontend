@@ -25,6 +25,18 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/bookings/booking-confirmation/booking-confirmation')
       .then(m => m.BookingConfirmationComponent)
+},
+ {
+  path: 'payments/:bookingId',
+  loadComponent: () =>
+    import('./features/bookings/booking-payment/booking-payment')
+      .then(m => m.BookingPaymentComponent)
+ },
+ {
+  path: 'my-bookings',
+  loadComponent: () =>
+    import('./features/bookings/my-bookings/my-bookings')
+      .then(m => m.MyBookings)
 }
 
 ];

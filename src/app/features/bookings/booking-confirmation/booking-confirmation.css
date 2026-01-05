@@ -5,7 +5,6 @@
   min-height: 80vh;
 }
 
-/* Loading State */
 .loading {
   display: flex;
   flex-direction: column;
@@ -34,7 +33,6 @@
   font-size: 1rem;
 }
 
-/* Error State */
 .error-message {
   display: flex;
   align-items: center;
@@ -54,7 +52,6 @@
   margin: 0;
 }
 
-/* Success Header */
 .success-header {
   text-align: center;
   margin-bottom: 2.5rem;
@@ -219,7 +216,6 @@
   color: #1e3a8a;
 }
 
-/* Actions */
 .actions {
   display: flex;
   gap: 1rem;

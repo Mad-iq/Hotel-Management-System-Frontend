@@ -1,11 +1,9 @@
 <div class="booking-confirmation-container">
-  <!-- Loading State -->
   <div *ngIf="loading" class="loading">
     <div class="spinner"></div>
     <p>Loading booking details...</p>
   </div>
 
-  <!-- Error State -->
   <div *ngIf="error && !loading" class="error-message">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="12" cy="12" r="10"></circle>
@@ -15,9 +13,7 @@
     <p>{{ error }}</p>
   </div>
 
-  <!-- Booking Confirmation -->
   <div *ngIf="!loading && !error && booking" class="confirmation-content">
-    <!-- Success Header -->
     <div class="success-header">
       <div class="success-icon">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -28,8 +24,6 @@
       <h1>Booking Confirmed!</h1>
       <p class="confirmation-message">Your reservation has been successfully confirmed.</p>
     </div>
-
-    <!-- Booking Details Card -->
     <div class="details-card">
       <div class="card-header">
         <h2>Booking Details</h2>
@@ -37,15 +31,12 @@
       </div>
 
       <div class="details-grid">
-        <!-- Status -->
         <div class="detail-item full-width">
           <span class="label">Status</span>
           <span class="status-badge" [ngClass]="'status-' + booking.bookingStatus.toLowerCase()">
             {{ booking.bookingStatus }}
           </span>
         </div>
-
-        <!-- Check-in Date -->
         <div class="detail-item">
           <span class="label">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -59,7 +50,6 @@
           <span class="value">{{ booking.checkInDate | date:'fullDate' }}</span>
         </div>
 
-        <!-- Check-out Date -->
         <div class="detail-item">
           <span class="label">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -73,7 +63,6 @@
           <span class="value">{{ booking.checkOutDate | date:'fullDate' }}</span>
         </div>
 
-        <!-- Hotel ID -->
         <div class="detail-item">
           <span class="label">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -85,7 +74,6 @@
           <span class="value">{{ booking.hotelId }}</span>
         </div>
 
-        <!-- Room ID -->
         <div class="detail-item">
           <span class="label">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -96,19 +84,16 @@
           <span class="value">{{ booking.roomId }}</span>
         </div>
 
-        <!-- Total Amount -->
         <div class="detail-item full-width total-amount">
           <span class="label">Total Amount</span>
           <span class="value price">{{ booking.totalAmount | currency }}</span>
         </div>
 
-        <!-- Booking Created -->
         <div class="detail-item">
           <span class="label">Booked On</span>
           <span class="value timestamp">{{ booking.createdAt | date:'short' }}</span>
         </div>
 
-        <!-- Last Updated -->
         <div class="detail-item">
           <span class="label">Last Updated</span>
           <span class="value timestamp">{{ booking.updatedAt | date:'short' }}</span>
@@ -116,10 +101,9 @@
       </div>
     </div>
 
-    <!-- Actions -->
     <div class="actions">
       <button class="btn-secondary">View My Bookings</button>
-      <button class="btn-primary">Payment Details</button>
+      <button class="btn-primary"  (click)="goToPayment()">Payment Details</button>
     </div>
   </div>
 </div>

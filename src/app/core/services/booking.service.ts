@@ -38,5 +38,8 @@ getBookingById(bookingId: number) {
   return this.http.get<Booking>( `${this.BASE_URL}/${bookingId}`);
 }
 
+getMyBookings(): Observable<Booking[]> {
+  return this.http.get<Booking[]>(`${this.BASE_URL}/user/mine`);
+}
 
 }

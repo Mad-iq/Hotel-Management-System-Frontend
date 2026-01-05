@@ -1,0 +1,90 @@
+<div class="payment-container">
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading payment details...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-state">
+    <div class="error-icon">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+    </div>
+    <h2>Payment Error</h2>
+    <p class="error-message">{{ error }}</p>
+    <button class="btn btn-secondary" (click)="loadPayment()">Try Again</button>
+  </div>
+
+  <div *ngIf="payment && !loading" class="payment-content">
+    <div class="payment-header">
+      <h1>Payment Details</h1>
+      <div class="status-badge" [ngClass]="{
+        'status-pending': payment.status === 'PENDING',
+        'status-paid': payment.status === 'PAID'
+      }">
+        {{ payment.status }}
+      </div>
+    </div>
+
+    <div class="payment-card">
+      <div class="payment-info">
+        <div class="info-row">
+          <span class="info-label">Booking ID</span>
+          <span class="info-value">#{{ payment.bookingId }}</span>
+        </div>
+        
+        <div class="info-row">
+          <span class="info-label">Payment ID</span>
+          <span class="info-value">#{{ payment.id }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Amount</span>
+          <span class="info-value amount">Rs {{ payment.amount | number:'1.2-2' }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Status</span>
+          <span class="info-value">{{ payment.status }}</span>
+        </div>
+
+        <div class="info-row" *ngIf="payment.paidAt">
+          <span class="info-label">Paid At</span>
+          <span class="info-value">{{ payment.paidAt | date:'medium' }}</span>
+        </div>
+      </div>
+
+      <div class="payment-actions" *ngIf="showPayNow">
+        <div class="payment-notice">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>Your payment is pending. Complete the payment to confirm your booking.</span>
+        </div>
+        
+        <button 
+          class="btn btn-primary btn-lg" 
+          (click)="payNow()"
+          [disabled]="loading">
+          <span *ngIf="!loading">Pay Now - Rs {{ payment.amount | number:'1.2-2' }}</span>
+          <span *ngIf="loading">Processing...</span>
+        </button>
+      </div>
+
+      <div class="payment-success" *ngIf="payment.status === 'PAID'">
+        <div class="success-icon">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h2>Payment Successful!</h2>
+        <p>Your payment has been processed successfully.</p>
+      </div>
+    </div>
+  </div>
+</div>

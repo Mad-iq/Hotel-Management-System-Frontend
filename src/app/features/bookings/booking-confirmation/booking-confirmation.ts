@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { BookingService } from '../../../core/services/booking.service';
@@ -21,7 +21,8 @@ export class BookingConfirmationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+     private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,4 +48,9 @@ export class BookingConfirmationComponent implements OnInit {
       }
     });
   }
+
+  goToPayment(): void {
+  this.router.navigate(['/payments', this.booking.id]);
+ }
+
 }
