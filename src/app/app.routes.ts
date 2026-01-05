@@ -37,6 +37,13 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/bookings/my-bookings/my-bookings')
       .then(m => m.MyBookings)
+},
+{
+  path: 'profile',
+  loadComponent: () =>
+    import('./features/auth/profile/profile')
+      .then(m => m.ProfileComponent)
 }
+
 
 ];

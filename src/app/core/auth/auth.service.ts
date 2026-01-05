@@ -8,6 +8,7 @@ import {
   RegisterRequest,
   RegisterResponse,
   AuthState,
+  ProfileResponse
 } from './auth.models';
 
 @Injectable({
@@ -16,7 +17,6 @@ import {
 export class AuthService {
   private readonly API_BASE = 'http://localhost:8080';
 
-  // holds the current auth state in memory
   private authState = signal<AuthState | null>(null);
 
   constructor(private http: HttpClient) {
@@ -37,7 +37,7 @@ export class AuthService {
             tokenType: response.tokenType,
             expiresAt,
             roles: response.roles,
-            userId: -1, // temporary, will be filled after validate
+            userId: -1,
           };
 
           this.saveAuthState(state);
@@ -115,4 +115,11 @@ export class AuthService {
     const state: AuthState = JSON.parse(raw);
     this.authState.set(state);
   }
+
+  getProfile() {
+  return this.http.get<ProfileResponse>(
+    `${this.API_BASE}/api/auth/profile`
+  );
+}
+
 }
