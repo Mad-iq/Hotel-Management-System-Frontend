@@ -1,0 +1,94 @@
+<div class="admin-categories">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Category Management</h1>
+    <p class="subtitle">
+      Manage room categories for each hotel
+    </p>
+  </div>
+
+  <!-- Hotel Selection -->
+  <div class="hotel-selector">
+    <label for="hotel">Select Hotel</label>
+    <select
+      id="hotel"
+      (change)="onHotelChange($event)"
+    >
+      <option value="">-- Select a hotel --</option>
+      <option
+        *ngFor="let hotel of hotels"
+        [value]="hotel.id"
+      >
+        {{ hotel.name }} ({{ hotel.city }})
+      </option>
+    </select>
+  </div>
+
+  <!-- Add Category Form -->
+  <form
+    *ngIf="selectedHotelId"
+    [formGroup]="categoryForm"
+    (ngSubmit)="submitCategory()"
+    class="category-form"
+  >
+    <h2>Add Category</h2>
+
+    <div class="form-grid">
+      <input
+        type="text"
+        placeholder="Category Name"
+        formControlName="name"
+      />
+
+      <input
+        type="number"
+        placeholder="Capacity"
+        formControlName="capacity"
+      />
+
+      <input
+        type="text"
+        placeholder="Description"
+        formControlName="description"
+      />
+    </div>
+
+    <button type="submit" [disabled]="submitting">
+      {{ submitting ? 'Creating...' : 'Add Category' }}
+    </button>
+  </form>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    Loading categories...
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error && !loading" class="error">
+    {{ error }}
+  </div>
+
+  <!-- Categories Table -->
+  <table
+    *ngIf="!loading && categories.length"
+    class="categories-table"
+  >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Capacity</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{ category.name }}</td>
+        <td>{{ category.capacity }}</td>
+        <td>{{ category.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,140 @@
+.admin-categories {
+  padding: 24px;
+  background-color: #f8fafc;
+  min-height: 100vh;
+  color: #1f2937;
+}
+
+/* Header */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/* Hotel selector */
+.hotel-selector {
+  margin-bottom: 24px;
+}
+
+.hotel-selector label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.hotel-selector select {
+  width: 300px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+/* Form */
+.category-form {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.category-form h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+/* Form grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.category-form input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.category-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* Submit button */
+.category-form button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.category-form button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.category-form button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+/* Loading & error */
+.loading {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.error {
+  margin-bottom: 16px;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+/* Table */
+.categories-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.categories-table thead {
+  background-color: #f1f5f9;
+}
+
+.categories-table th,
+.categories-table td {
+  padding: 12px 14px;
+  font-size: 14px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.categories-table th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.categories-table tbody tr:hover {
+  background-color: #f9fafb;
+}

@@ -1,0 +1,59 @@
+<div class="admin-hotels">
+  <div class="page-header">
+    <h1>Hotel Management</h1>
+    <p class="subtitle">
+      Add new hotels and view existing hotels
+    </p>
+  </div>
+  <form [formGroup]="hotelForm" (ngSubmit)="submitHotel()" class="hotel-form">
+
+    <h2>Add Hotel</h2>
+
+    <div class="form-grid">
+      <input type="text" placeholder="Hotel Name" formControlName="name" />
+      <input type="text" placeholder="Address" formControlName="address" />
+      <input type="text" placeholder="City" formControlName="city" />
+      <input type="text" placeholder="State" formControlName="state" />
+      <input type="text" placeholder="Country" formControlName="country" />
+      <input
+        type="number"
+        placeholder="Star Rating (1–5)"
+        formControlName="starRating"
+      />
+    </div>
+
+    <button type="submit" [disabled]="submitting">
+      {{ submitting ? 'Creating...' : 'Add Hotel' }}
+    </button>
+
+  </form>
+  <div *ngIf="loading" class="loading">
+    Loading hotels...
+  </div>
+  <div *ngIf="error && !loading" class="error">
+    {{ error }}
+  </div>
+
+  <table *ngIf="!loading && !error" class="hotels-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Country</th>
+        <th>Star Rating</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let hotel of hotels">
+        <td>{{ hotel.name }}</td>
+        <td>{{ hotel.city }}</td>
+        <td>{{ hotel.state }}</td>
+        <td>{{ hotel.country }}</td>
+        <td>{{ hotel.starRating }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

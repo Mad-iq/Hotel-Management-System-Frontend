@@ -43,7 +43,26 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/auth/profile/profile')
       .then(m => m.ProfileComponent)
+},
+{
+  path: 'dashboard/admin',
+  loadComponent: () =>
+    import('./features/dashboard/admin/admin-dashboard/admin-dashboard')
+      .then(m => m.AdminDashboardComponent)
+},
+{
+  path: 'admin/hotels',
+  loadComponent: () =>
+    import('./features/admin/hotels/admin-hotels/admin-hotels')
+      .then(m => m.AdminHotelsComponent)
+},
+{
+  path: 'admin/categories',
+  loadComponent: () =>
+    import('./features/admin/hotels/admin-categories/admin-categories')
+      .then(m => m.AdminCategoriesComponent)
 }
+
 
 
 ];
