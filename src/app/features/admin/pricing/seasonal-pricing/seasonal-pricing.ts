@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
+  ValidationErrors,
 } from '@angular/forms';
 
 import { HotelResponse, RoomCategoryResponse } from '../../../../core/models/hotel.model';
@@ -16,6 +18,17 @@ import {
 import { HotelService } from '../../../../core/services/hotel.service';
 import { RoomCategoryService } from '../../../../core/services/room-category.service';
 import { PricingService } from '../../../../core/services/pricing.service';
+
+export function dateRangeValidator(
+  control: AbstractControl
+): ValidationErrors | null{
+  const start = control.get('startDate')?.value;
+  const end = control.get('endDate')?.value;
+  if (!start || !end){
+    return null;
+  }
+  return start <= end ? null : { invalidDateRange: true };
+}
 
 @Component({
   selector: 'app-seasonal-pricing',
@@ -42,6 +55,7 @@ export class SeasonalPricingComponent implements OnInit {
 
   error: string | null = null;
   success: string | null = null;
+  today = new Date().toISOString().split('T')[0];
 
   constructor(
     private fb: FormBuilder,
@@ -56,12 +70,15 @@ export class SeasonalPricingComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.pricingForm = this.fb.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      price: [null, [Validators.required, Validators.min(0)]],
-      queryDate: [''], 
-    });
+    this.pricingForm = this.fb.group(
+      {
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required],
+        price: [null, [Validators.required, Validators.min(0)]],
+        queryDate: [''],
+      },
+      { validators: dateRangeValidator }
+    );
   }
 
   private loadHotels(): void {
@@ -82,14 +99,14 @@ export class SeasonalPricingComponent implements OnInit {
   onHotelChange(event: Event): void {
     const hotelId = Number((event.target as HTMLSelectElement).value);
 
-    this.selectedHotelId = hotelId;
+    this.selectedHotelId = hotelId || null;
     this.selectedCategoryId = null;
     this.categories = [];
     this.seasonalPricingList = [];
     this.pricingForm.reset();
 
-    if (hotelId) {
-      this.loadCategories(hotelId);
+    if (this.selectedHotelId) {
+      this.loadCategories(this.selectedHotelId);
     }
   }
 
@@ -111,9 +128,9 @@ export class SeasonalPricingComponent implements OnInit {
   onCategoryChange(event: Event): void {
     const categoryId = Number((event.target as HTMLSelectElement).value);
 
-    this.selectedCategoryId = categoryId;
+    this.selectedCategoryId = categoryId || null;
     this.seasonalPricingList = [];
-    this.pricingForm.patchValue({ queryDate: '' });
+    this.pricingForm.reset();
   }
 
   addSeasonalPricing(): void {
@@ -149,17 +166,16 @@ export class SeasonalPricingComponent implements OnInit {
   }
 
   fetchSeasonalPricing(): void {
-    if (!this.selectedCategoryId || !this.pricingForm.value.queryDate) {
+    const queryDate = this.pricingForm.value.queryDate;
+
+    if (!this.selectedCategoryId || !queryDate) {
       return;
     }
 
     this.loadingPricing = true;
 
     this.pricingService
-      .getSeasonalPricing(
-        this.selectedCategoryId,
-        this.pricingForm.value.queryDate
-      )
+      .getSeasonalPricing(this.selectedCategoryId, queryDate)
       .subscribe({
         next: (data) => {
           this.seasonalPricingList = data;
