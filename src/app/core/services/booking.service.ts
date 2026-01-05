@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AvailableHotel } from '../models/available-hotel.model';
 import { SearchHotelsRequest } from '../models/search-hotels-request.model';
 import { AvailableRoomsByCategory } from '../models/available-rooms-by-category.model';
+import { Booking } from '../models/booking.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +18,7 @@ export class BookingService {
   searchAvailableHotels(
     request: SearchHotelsRequest
   ): Observable<AvailableHotel[]> {
-    return this.http.post<AvailableHotel[]>(
-      `${this.BASE_URL}/search/hotels`,
-      request
-    );
+    return this.http.post<AvailableHotel[]>(`${this.BASE_URL}/search/hotels`,request);
   }
 
   getAvailableRooms(hotelId: number,checkIn: string,checkOut: string,guests?: number): Observable<AvailableRoomsByCategory[]> {
@@ -28,10 +26,17 @@ export class BookingService {
   if (guests !== undefined){
     params.guests = guests;
   }
-  return this.http.get<any[]>(
-    `${this.BASE_URL}/available-rooms`,
-    { params }
-  );
+  return this.http.get<any[]>(`${this.BASE_URL}/available-rooms`,{ params });
 }
+
+createBooking(hotelId: number,roomId: number,checkIn: string,checkOut: string): Observable<any> {
+  const payload = {hotelId,roomId,checkIn,checkOut};
+  return this.http.post<any>( `${this.BASE_URL}`, payload);
+}
+
+getBookingById(bookingId: number) {
+  return this.http.get<Booking>( `${this.BASE_URL}/${bookingId}`);
+}
+
 
 }

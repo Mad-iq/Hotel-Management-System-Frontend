@@ -53,8 +53,14 @@
           {{ category.availableRooms.length }} 
           {{ category.availableRooms.length === 1 ? 'room' : 'rooms' }} available
         </span>
-        <button class="book-button">Book Now</button>
+        <button
+         class="book-button"
+          (click)="bookRoom(category)"
+           [disabled]="bookingInProgress">
+          {{ bookingInProgress ? 'Booking...' : 'Book Now' }}
+         </button>
       </div>
+
     </div>
   </div>
 </div>

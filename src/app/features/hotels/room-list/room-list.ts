@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { BookingService } from '../../../core/services/booking.service';
+import { AvailableRoomsByCategory } from '../../../core/models/available-rooms-by-category.model';
 
 @Component({
   selector: 'app-room-list',
@@ -20,12 +21,14 @@ export class RoomListComponent implements OnInit {
 
   loading = false;
   error: string | null = null;
+  bookingInProgress = false;
 
-  availableRooms: any[] = [];
+  availableRooms: AvailableRoomsByCategory[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+     private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -62,4 +65,37 @@ export class RoomListComponent implements OnInit {
         }
       });
   }
+
+  bookRoom(category: AvailableRoomsByCategory): void {
+  if (!category.availableRooms || category.availableRooms.length === 0) {
+    this.error = 'No rooms available in this category';
+    return;
+  }
+  const selectedRoomId = category.availableRooms[0].roomId;
+  console.log('Selected roomId:', selectedRoomId);
+
+  this.createBooking(selectedRoomId);
+}
+
+createBooking(roomId: number): void {
+  this.bookingInProgress = true;
+  this.error = null;
+  this.bookingService.createBooking(  this.hotelId,roomId,this.checkIn,this.checkOut ) .subscribe({
+      next: (booking) => {
+        this.bookingInProgress = false;
+        this.router.navigate(['/bookings', booking.id]);
+        console.log('Booking successful:', booking);
+      },
+      error: (err) => {
+        this.bookingInProgress = false;
+        const message =
+          err.error?.message ||
+          err.error?.error ||
+          'Booking failed. Please try again.';
+        this.error = message;
+        console.error('Booking failed:', err);
+      }
+    });
+}
+
 }

@@ -1,0 +1,125 @@
+<div class="booking-confirmation-container">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading booking details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-message">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Booking Confirmation -->
+  <div *ngIf="!loading && !error && booking" class="confirmation-content">
+    <!-- Success Header -->
+    <div class="success-header">
+      <div class="success-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h1>Booking Confirmed!</h1>
+      <p class="confirmation-message">Your reservation has been successfully confirmed.</p>
+    </div>
+
+    <!-- Booking Details Card -->
+    <div class="details-card">
+      <div class="card-header">
+        <h2>Booking Details</h2>
+        <span class="booking-id">ID: #{{ booking.id }}</span>
+      </div>
+
+      <div class="details-grid">
+        <!-- Status -->
+        <div class="detail-item full-width">
+          <span class="label">Status</span>
+          <span class="status-badge" [ngClass]="'status-' + booking.bookingStatus.toLowerCase()">
+            {{ booking.bookingStatus }}
+          </span>
+        </div>
+
+        <!-- Check-in Date -->
+        <div class="detail-item">
+          <span class="label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Check-in
+          </span>
+          <span class="value">{{ booking.checkInDate | date:'fullDate' }}</span>
+        </div>
+
+        <!-- Check-out Date -->
+        <div class="detail-item">
+          <span class="label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Check-out
+          </span>
+          <span class="value">{{ booking.checkOutDate | date:'fullDate' }}</span>
+        </div>
+
+        <!-- Hotel ID -->
+        <div class="detail-item">
+          <span class="label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Hotel ID
+          </span>
+          <span class="value">{{ booking.hotelId }}</span>
+        </div>
+
+        <!-- Room ID -->
+        <div class="detail-item">
+          <span class="label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+            Room ID
+          </span>
+          <span class="value">{{ booking.roomId }}</span>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="detail-item full-width total-amount">
+          <span class="label">Total Amount</span>
+          <span class="value price">{{ booking.totalAmount | currency }}</span>
+        </div>
+
+        <!-- Booking Created -->
+        <div class="detail-item">
+          <span class="label">Booked On</span>
+          <span class="value timestamp">{{ booking.createdAt | date:'short' }}</span>
+        </div>
+
+        <!-- Last Updated -->
+        <div class="detail-item">
+          <span class="label">Last Updated</span>
+          <span class="value timestamp">{{ booking.updatedAt | date:'short' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn-secondary">View My Bookings</button>
+      <button class="btn-primary">Payment Details</button>
+    </div>
+  </div>
+</div>
