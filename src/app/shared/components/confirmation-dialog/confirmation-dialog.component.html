@@ -1,0 +1,38 @@
+<div class="dialog-backdrop" *ngIf="isOpen" (click)="onBackdropClick($event)">
+  <div class="dialog-container">
+    <div class="dialog-header">
+      <h2>{{ title }}</h2>
+      <button 
+        class="dialog-close" 
+        (click)="onCancel()" 
+        [disabled]="loading"
+        aria-label="Close dialog">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="dialog-body">
+      <p>{{ message }}</p>
+    </div>
+
+    <div class="dialog-footer">
+      <button 
+        class="btn btn-secondary" 
+        (click)="onCancel()"
+        [disabled]="loading">
+        {{ cancelText }}
+      </button>
+      <button 
+        class="btn"
+        [ngClass]="confirmButtonClass"
+        (click)="onConfirm()"
+        [disabled]="loading">
+        <span *ngIf="!loading">{{ confirmText }}</span>
+        <span *ngIf="loading">Processing...</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { BookingService } from '../../../core/services/booking.service';
 import { Booking } from '../../../core/models/booking.model';
+import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-my-bookings',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ConfirmationDialogComponent],
   templateUrl: './my-bookings.html',
   styleUrl: './my-bookings.css',
 })
@@ -17,7 +19,11 @@ export class MyBookings implements OnInit {
   loading = false;
   error: string | null = null;
 
-  constructor(private bookingService: BookingService) {}
+  showCancelDialog = false;
+  bookingToCancel: Booking | null = null;
+  cancellingBooking = false;
+
+  constructor(private bookingService: BookingService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadMyBookings();
@@ -34,9 +40,50 @@ export class MyBookings implements OnInit {
       },
       error: (err) => {
         this.loading = false;
-        this.error =err.error?.message ||
+        this.error = err.error?.message ||
           err.error?.error ||
           'Failed to load your bookings';
+      }
+    });
+  }
+
+  viewPayment(bookingId: number): void {
+    this.router.navigate(['/payments', bookingId]);
+  }
+
+  openCancelDialog(booking: Booking): void {
+    this.bookingToCancel = booking;
+    this.showCancelDialog = true;
+  }
+
+  closeCancelDialog(): void {
+    if (!this.cancellingBooking) {
+      this.showCancelDialog = false;
+      this.bookingToCancel = null;
+    }
+  }
+
+  confirmCancelBooking(): void {
+    if (!this.bookingToCancel) return;
+
+    this.cancellingBooking = true;
+
+    this.bookingService.cancelBooking(this.bookingToCancel.id).subscribe({
+      next: () => {
+        if (this.bookingToCancel) {
+          this.bookingToCancel.bookingStatus = 'CANCELLED';
+        }
+        this.cancellingBooking = false;
+        this.showCancelDialog = false;
+        this.bookingToCancel = null;
+      },
+      error: (err) => {
+        this.cancellingBooking = false;
+        this.error = err.error?.message ||
+          err.error?.error ||
+          'Failed to cancel booking';
+        this.showCancelDialog = false;
+        this.bookingToCancel = null;
       }
     });
   }
