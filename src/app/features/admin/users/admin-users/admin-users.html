@@ -1,0 +1,88 @@
+<div class="admin-users">
+
+  <h2>Create Staff User</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="submit()">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" formControlName="username" placeholder="Enter username" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Enter email address" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Temporary password" />
+      </div>
+
+      <div class="form-group">
+        <label>Role</label>
+        <select formControlName="role">
+          <option value="" disabled>Select role</option>
+          <option *ngFor="let r of roles" [value]="r.value">
+            {{ r.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" formControlName="firstName" placeholder="First name" />
+      </div>
+
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" formControlName="lastName" placeholder="Last name" />
+      </div>
+    </div>
+
+    <div class="form-group full-width">
+      <label>Phone</label>
+      <input type="text" formControlName="phone" placeholder="Phone number" />
+    </div>
+
+    <div class="form-group full-width">
+  <label>Assign Hotels</label>
+
+  <div class="hotel-dropdown">
+
+    <div class="dropdown-header">
+      Select hotels
+    </div>
+
+    <div class="dropdown-menu">
+      <label
+        class="dropdown-item"
+        *ngFor="let hotel of hotels"
+      >
+        <input
+          type="checkbox"
+          (change)="onHotelToggle(hotel.id, $event)"
+        />
+        {{ hotel.name }}
+      </label>
+    </div>
+
+  </div>
+</div>
+
+
+    <div class="message error" *ngIf="error">{{ error }}</div>
+    <div class="message success" *ngIf="success">{{ success }}</div>
+
+    <button type="submit" [disabled]="submitting">
+      {{ submitting ? 'Creating User...' : 'Create Staff User' }}
+    </button>
+
+  </form>
+
+</div>

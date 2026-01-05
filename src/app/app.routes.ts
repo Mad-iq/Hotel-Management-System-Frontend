@@ -73,6 +73,13 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/admin/pricing/seasonal-pricing/seasonal-pricing')
       .then(m => m.SeasonalPricingComponent)
+},
+{
+  path: 'admin/users',
+  loadComponent: () =>
+    import('./features/admin/users/admin-users/admin-users')
+      .then(m => m.AdminUsersComponent)
 }
+
 
 ];
