@@ -1,1 +1,80 @@
-<p>seasonal-pricing works!</p>
+<div class="seasonal-pricing">
+  <h2>Seasonal Pricing</h2>
+  <div class="form-group">
+    <label>Select Hotel</label>
+    <select (change)="onHotelChange($event)">
+      <option value="">-- Select Hotel --</option>
+      <option *ngFor="let hotel of hotels" [value]="hotel.id">
+        {{ hotel.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="selectedHotelId">
+    <label>Select Category</label>
+    <select (change)="onCategoryChange($event)">
+      <option value="">-- Select Category --</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+  <form *ngIf="selectedCategoryId" [formGroup]="pricingForm">
+
+    <h3>Add Seasonal Pricing</h3>
+
+    <div class="form-group">
+      <label>Start Date</label>
+      <input type="date" formControlName="startDate" />
+    </div>
+
+    <div class="form-group">
+      <label>End Date</label>
+      <input type="date" formControlName="endDate" />
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" formControlName="price" />
+    </div>
+
+    <button type="button" (click)="addSeasonalPricing()" [disabled]="submitting">
+      {{ submitting ? 'Saving...' : 'Add Seasonal Pricing' }}
+    </button>
+
+    <hr />
+
+    <h3>View Seasonal Pricing</h3>
+
+    <div class="form-group">
+      <label>Select Date</label>
+      <input type="date" formControlName="queryDate" />
+    </div>
+
+    <button type="button" (click)="fetchSeasonalPricing()">
+      Fetch Pricing
+    </button>
+
+  </form>
+  <table *ngIf="seasonalPricingList.length">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Price</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pricing of seasonalPricingList">
+        <td>{{ pricing.startDate }}</td>
+        <td>{{ pricing.endDate }}</td>
+        <td>{{ pricing.price }}</td>
+        <td>{{ pricing.createdAt | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="success" *ngIf="success">{{ success }}</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+</div>
