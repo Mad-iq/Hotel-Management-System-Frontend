@@ -75,6 +75,12 @@ export const routes: Routes = [
       .then(m => m.SeasonalPricingComponent)
 },
 {
+  path: 'manager/pricing/seasonal',
+  loadComponent: () =>
+    import('./features/admin/pricing/seasonal-pricing/seasonal-pricing')
+      .then(m => m.SeasonalPricingComponent)
+},
+{
   path: 'admin/users',
   loadComponent: () =>
     import('./features/admin/users/admin-users/admin-users')
@@ -122,6 +128,12 @@ export const routes: Routes = [
     import('./features/check-out/check-out/check-out')
       .then(m => m.CheckOutComponent),
 },
+{
+  path: 'dashboard/receptionist',
+  loadComponent: () =>
+    import('./features/dashboard/receptionist/receptionist-dashboard/receptionist-dashboard')
+      .then(m => m.ReceptionistDashboardComponent)
+}
   
 
 

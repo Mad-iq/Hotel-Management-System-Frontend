@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-receptionist-dashboard',
@@ -6,6 +7,15 @@ import { Component } from '@angular/core';
   templateUrl: './receptionist-dashboard.html',
   styleUrl: './receptionist-dashboard.css',
 })
-export class ReceptionistDashboard {
+export class ReceptionistDashboardComponent {
 
+   constructor(private router: Router) {}
+
+  goToCheckIn(): void {
+    this.router.navigate(['/receptionist/check-in']);
+  }
+
+  goToCheckOut(): void {
+    this.router.navigate(['/receptionist/check-out']);
+  }
 }

@@ -31,7 +31,7 @@
         </div>
         <h3>User Management</h3>
         <p>Create and manage hotel staff accounts</p>
-        <button class="card-button">
+        <button class="card-button" (click)="goToUsers()">
           <span>Manage Users</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -49,7 +49,7 @@
         </div>
         <h3>Hotel Management</h3>
         <p>Add and manage hotels</p>
-        <button class="card-button">
+        <button class="card-button" (click)="goToHotels()">
           <span>Manage Hotels</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -67,7 +67,7 @@
         </div>
         <h3>Room Categories</h3>
         <p>Configure room categories</p>
-        <button class="card-button">
+        <button class="card-button" (click)="goToCategories()">
           <span>Manage Categories</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -85,7 +85,7 @@
         </div>
         <h3>Rooms</h3>
         <p>Manage room inventory and availability</p>
-        <button class="card-button">
+        <button class="card-button" (click)="goToRooms()" >
           <span>Manage Rooms</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -96,8 +96,6 @@
 
     </div>
   </section>
-
-  <!-- Pricing Section -->
   <section class="dashboard-section">
     <div class="section-header">
       <div class="section-icon pricing-icon">
@@ -122,7 +120,7 @@
         </div>
         <h3>Base Pricing</h3>
         <p>Set default pricing for room categories</p>
-        <button class="card-button">
+        <button class="card-button" (click)="goToBasePrice()">
           <span>Base Pricing</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -140,7 +138,7 @@
         </div>
         <h3>Seasonal Pricing</h3>
         <p>Configure seasonal price adjustments</p>
-        <button class="card-button">
+        <button class="card-button" (click)="goToSeasonalPrice()">
           <span>Seasonal Pricing</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -178,7 +176,7 @@
         </div>
         <h3>Reports</h3>
         <p>View revenue and booking summary reports</p>
-        <button class="card-button">
+        <button class="card-button" (click)="goToReport()">
           <span>View Reports</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
