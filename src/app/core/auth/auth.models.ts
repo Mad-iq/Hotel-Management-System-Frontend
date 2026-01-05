@@ -31,3 +31,12 @@ export interface AuthState {
   roles: string[];
   userId: number;
 }
+
+export interface ProfileResponse {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  roles: string[];
+}
