@@ -97,8 +97,20 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/dashboard/manager/manager-dashboard/manager-dashboard')
       .then(m => m.ManagerDashboardComponent)
-}
-
+},
+{
+    path: 'manager/check-in',
+    loadComponent: () =>
+      import('./features/check-in/check-in/check-in')
+        .then(m => m.CheckInComponent),
+  },
+  {
+  path: 'receptionist/check-in',
+  loadComponent: () =>
+    import('./features/check-in/check-in/check-in')
+      .then(m => m.CheckInComponent),
+},
+  
 
 
 ];

@@ -46,4 +46,14 @@ cancelBooking(bookingId: number) {
   return this.http.delete(`${this.BASE_URL}/${bookingId}`);
 }
 
+checkIn(bookingId: number): Observable<Booking> {
+  return this.http.post<Booking>( `${this.BASE_URL}/${bookingId}/check-in`, {});
+}
+
+checkOut(bookingId: number): Observable<Booking> {
+  return this.http.post<Booking>(`${this.BASE_URL}/${bookingId}/check-out`,{});
+}
+
+
+
 }
