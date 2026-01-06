@@ -86,7 +86,7 @@
 
         <div class="detail-item full-width total-amount">
           <span class="label">Total Amount</span>
-          <span class="value price">{{ booking.totalAmount | currency }}</span>
+          <span class="value price">{{ booking.totalAmount | currency:'INR':'symbol':'1.2-2'  }}</span>
         </div>
 
         <div class="detail-item">
@@ -102,7 +102,7 @@
     </div>
 
     <div class="actions">
-      <button class="btn-secondary">View My Bookings</button>
+      <button class="btn-secondary" (click)="goToMyBooking()">View My Bookings</button>
       <button class="btn-primary"  (click)="goToPayment()">Payment Details</button>
     </div>
   </div>

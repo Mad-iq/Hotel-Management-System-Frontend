@@ -53,4 +53,8 @@ export class BookingConfirmationComponent implements OnInit {
   this.router.navigate(['/payments', this.booking.id]);
  }
 
+ goToMyBooking():void{
+  this.router.navigate(['/my-bookings']);
+ }
+
 }

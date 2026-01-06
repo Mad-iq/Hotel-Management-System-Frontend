@@ -207,7 +207,7 @@
   opacity: 0.9;
   margin: 0;
 }
-/* responsivity */
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.2rem;
@@ -236,7 +236,6 @@
   }
 }
 
-/* mat customization */
 ::ng-deep .mat-mdc-form-field {
   font-size: 14px;
 }
@@ -250,7 +249,7 @@
 }
 
 ::ng-deep .search-button.mat-mdc-raised-button:hover:not([disabled]) {
-  background-color: #005bb5;
+  background-color: #9dc7f1;
 }
 
 ::ng-deep .mat-mdc-outlined-button {
