@@ -1,1 +1,35 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="navbar-left">
+    <a routerLink="/" class="logo">
+      Hotel Reservation System
+    </a>
+  </div>
+
+  <div class="navbar-right">
+
+    @if (!isLoggedIn()) {
+      <a routerLink="/login" class="nav-link">Login</a>
+      <a routerLink="/register" class="nav-link primary">Register</a>
+    }
+
+    @if (isLoggedIn() && isGuest()) {
+      <a routerLink="/my-bookings" class="nav-link">My Bookings</a>
+      <a routerLink="/profile" class="nav-link">Profile</a>
+      <button class="nav-link logout" (click)="logout()">Logout</button>
+    }
+
+    @if (isLoggedIn() && isStaff()) {
+      <a
+        *ngIf="dashboardRoute()"
+        [routerLink]="dashboardRoute()"
+        class="nav-link"
+      >
+        Dashboard
+      </a>
+
+      <a routerLink="/profile" class="nav-link">Profile</a>
+      <button class="nav-link logout" (click)="logout()">Logout</button>
+    }
+
+  </div>
+</nav>
